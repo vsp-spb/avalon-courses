@@ -31,4 +31,5 @@ public interface TbltermsFacadeLocal {
 
     int count();
     
+    void deleteByTerm(Object term);
 }

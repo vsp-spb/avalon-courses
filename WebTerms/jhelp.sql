@@ -20,3 +20,6 @@ insert into tbldefinitions values (3, 'The conventions enable beans to be easily
 insert into tbldefinitions values (4, 'A collection of graphical user interface (GUI) components that were implemented using native-platform versions of the components.', 3);
 insert into tbldefinitions values (5, 'These components provide that subset of functionality which is common to all native platforms.', 3);
 insert into tbldefinitions values (6, 'Largely supplanted by the Project Swing component set.', 3);
+
+CREATE SEQUENCE term_seq as INTEGER start with 4 INCREMENT BY 1 NO CYCLE ;
+CREATE SEQUENCE definition_seq as INTEGER start with 7 INCREMENT BY 1 NO CYCLE ;

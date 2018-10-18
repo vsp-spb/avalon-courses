@@ -37,4 +37,10 @@ public class TbltermsFacade extends AbstractFacade<Tblterms> implements Tblterms
         return !list.isEmpty() ? list.get(0) : null;
     }
 
+    @Override
+    public void deleteByTerm(Object term) {
+        em.createNamedQuery("Tblterms.deleteByTerm")
+                .setParameter("term", term).executeUpdate();
+    }
+
 }

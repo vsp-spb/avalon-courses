@@ -7,18 +7,17 @@ package jpa;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,18 +28,17 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Tblterms.findAll", query = "SELECT t FROM Tblterms t")
     , @NamedQuery(name = "Tblterms.findById", query = "SELECT t FROM Tblterms t WHERE t.id = :id")
-    , @NamedQuery(name = "Tblterms.findByTerm", query = "SELECT t FROM Tblterms t WHERE t.term = :term")})
+    , @NamedQuery(name = "Tblterms.findByTerm", query = "SELECT t FROM Tblterms t WHERE t.term = :term")
+    , @NamedQuery(name = "Tblterms.deleteByTerm", query = "DELETE FROM Tblterms t WHERE t.term = :term")})
 public class Tblterms implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
-    @NotNull
+    @SequenceGenerator(name="termSeq", initialValue=4, allocationSize=1, sequenceName = "term_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "termSeq")
     @Column(name = "ID")
     private Integer id;
 
-    @NotNull
-    @Size(min = 1, max = 96)
     @Column(name = "TERM")
     private String term;
 
